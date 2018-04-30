@@ -1,5 +1,6 @@
-package application;
+package graphique;
 
+import general.Case;
 import javafx.scene.*;
 import javafx.scene.paint.*;
 import javafx.scene.canvas.*;
@@ -21,6 +22,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.stage.Stage;
+import waffle.CaseType;
+import waffle.Gaufre;
 
 
 public class Dessin extends Application {
@@ -81,7 +84,7 @@ public class Dessin extends Application {
 		 imageView.setFitWidth(x);
 		 p.getChildren().add(imageView); 
 	    
-        Ecouteur_Souris ecouteurS = new Ecouteur_Souris(this, x, y);
+        final Ecouteur_Souris ecouteurS = new Ecouteur_Souris(this, x, y);
         
         s.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
@@ -100,7 +103,11 @@ public class Dessin extends Application {
           }
         }); 
         primaryStage.show();
-        tracer(c);
+        Gaufre ga = new Gaufre(5,5);
+        //affichage_gaufre(ga, c);
+        Case k = new Case(2,2);
+        ga.manger(k);
+        affichage_gaufre(ga, c);
 	}
 	
 	public void affichage_gaufre(Gaufre ga, Canvas c){
@@ -110,8 +117,8 @@ public class Dessin extends Application {
 		
 		GraphicsContext g = c.getGraphicsContext2D();
 		
-		int l=ga.largeur();
-	    int h = ga.hauteur();
+		int l=ga.getLength();
+	    int h = ga.getHeight();
 		double x = c.getWidth() / h;             //largeur d'une case
 	    double y = c.getHeight() / l;         //hauteur d'une case
 	    
@@ -121,18 +128,18 @@ public class Dessin extends Application {
 	    		
 	    		if(ga.getCase(i,j)==CaseType.EATEN){ 
 	    			g.setFill(Color.WHITE);
-	    			g.strokeRect(i*x,j*y, l, h);
-	    			g.fillRect(i*x,j*y, l, h);
+	    			g.strokeRect(i*x,j*y, x, y);
+	    			g.fillRect(i*x,j*y, x, y);
 	    			
 	    		}else if (ga.getCase(i,j)==CaseType.FREE){
 	    			g.setFill(Color.ORANGE);
-	    			g.strokeRect(i*x,j*y, l, h);
-	    			g.fillRect(i*x,j*y, l, h);
+	    			g.strokeRect(i*x,j*y, x, y);
+	    			g.fillRect(i*x,j*y, x, y);
 	    			
 	    		}else if (ga.getCase(i,j)==CaseType.POISON){
 	    			g.setFill(Color.GREEN);
-	    			g.strokeRect(i*x,j*y, l, h);
-	    			g.fillRect(i*x,j*y, l, h);
+	    			g.strokeRect(i*x,j*y, x, y);
+	    			g.fillRect(i*x,j*y, x, y);
 	    			 		
 	    		}
 	    	}
@@ -147,6 +154,3 @@ public class Dessin extends Application {
 	}
 
 }
-
-
-
