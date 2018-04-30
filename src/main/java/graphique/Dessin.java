@@ -1,4 +1,4 @@
-package graphique;
+package application;
 
 import javafx.scene.*;
 import javafx.scene.paint.*;
@@ -10,36 +10,32 @@ import javafx.scene.input.MouseEvent;
 import javafx.event.EventHandler;
 
 import java.io.File;
-import javax.print.DocFlavor.URL;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.stage.Stage;
 
-import waffle.*;
-import general.*;
-
 
 public class Dessin extends Application {
-   
-	Gaufre ga;
-	int lignes;
-	int col;
+    GraphicsContext g;
+	//Gaufre ga;
+	int lignes = 5; /*ga.hauteur()*/;
+	int col = 5;/*ga.largeur()*/;
+    //Image poison = null;
 	
-  	public Dessin(Gaufre ga){
+	
+	/*public Dessin(Gaufre ga){
 		this.ga = ga;
-		lignes = ga.getLength();
-		col = ga.getHeight();
-  	}
+	}*/
 	
-	public void tracer (Canvas c, Pane p){
+	public void tracer (Canvas c){
 		
 		GraphicsContext g = c.getGraphicsContext2D();
 		
@@ -47,35 +43,22 @@ public class Dessin extends Application {
 		 double l = width / col;
 		 double height = c.getHeight();
 		 double h = height  / lignes;
-		 
-		 for(Iterator it_h = ga.getIterator(); it_h.hasNext_height();){
-                    ga.setTo_length(0);
-                    for(Iterator it_l = ga.getIterator(); it_l.hasNext_length();){
-                        Case casCour = ga.getIndex();
-                        if(ga.getCase() == CaseType.FREE){
-                           g.setFill(Color.WHITE);
-                           g.strokeRect(casCour.getX()*l, casCour.getY()*h, l, h);
-                           g.fillRect(casCour.getX()*l, casCour.getY()*h, l, h);
-
-                        }
-                        else if(ga.getCase() == CaseType.POISON){
-                          /* final String imageURI = new File("/home/n/ndourno/workspace/Gaufre/rsc/poison.png").toURI().toString(); 
-                           final Image image = new Image(imageURI);
-                           final ImageView imageView = new ImageView(image); 
-                           imageView.setFitHeight(h);
-                           imageView.setFitWidth(l);
-                           p.getChildren().add(imageView); */
-                        }
-                       else if(ga.getCase()  == CaseType.EATEN){
-                           g.setFill(Color.WHITE);
-                           g.strokeRect(casCour.getX()*l, casCour.getY()*h, l, h);
-                           g.fillRect(casCour.getX()*l, casCour.getY()*h, l, h);
-                       }
-                        it_l.next_length();
-                    }
-                    it_h.next_height();
+	
+		 g.setFill(Color.BROWN);
+		 for(int i = 0; i<=lignes; i++){
+			 
+			 for(int j = 0; j<=col; j++){ 
+				 
+				 g.strokeRect(i*l,j*h, l, h);
+				 g.fillRect(i*l,j*h, l, h);
+				// System.out.println(i*l+" "+j*h);
+				
+			 } 
+			 
 		 }
-
+		 g.setFill(Color.BLUE);
+		 g.strokeRect(0,0, l, h);
+		 g.fillRect(0, 0, l, h);
 	}
 	
 	
@@ -88,12 +71,17 @@ public class Dessin extends Application {
 	    c.heightProperty().bind(p.heightProperty());
 	    Scene s = new Scene(p, 800, 600);
 	    
-	    double width = c.getWidth();
-		double l = width / col;
-		double height = c.getHeight();
-		double h = height  / lignes;
+        double x = c.getWidth() / col;             //largeur d'une case
+	    double y = c.getHeight() / lignes;         //hauteur d'une case
 	   
-        final Ecouteur_Souris ecouteurS = new Ecouteur_Souris(this, l, h);
+	    final String imageURI = new File("/home/n/ndourno/workspace/ZZZ/src/image/poison.png/").toURI().toString(); 
+		final Image image = new Image(imageURI);
+        final ImageView imageView = new ImageView(image); 
+		 imageView.setFitHeight(y);
+		 imageView.setFitWidth(x);
+		 p.getChildren().add(imageView); 
+	    
+        Ecouteur_Souris ecouteurS = new Ecouteur_Souris(this, x, y);
         
         s.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
@@ -112,8 +100,46 @@ public class Dessin extends Application {
           }
         }); 
         primaryStage.show();
-        tracer(c,p);
+        tracer(c);
 	}
+	
+	public void affichage_gaufre(Gaufre ga, Canvas c){
+		
+		
+		int i, j;
+		
+		GraphicsContext g = c.getGraphicsContext2D();
+		
+		int l=ga.largeur();
+	    int h = ga.hauteur();
+		double x = c.getWidth() / h;             //largeur d'une case
+	    double y = c.getHeight() / l;         //hauteur d'une case
+	    
+	    
+	    for(i=0;i<l; i++){
+	    	for(j=0;j<h;j++){
+	    		
+	    		if(ga.getCase(i,j)==CaseType.EATEN){ 
+	    			g.setFill(Color.WHITE);
+	    			g.strokeRect(i*x,j*y, l, h);
+	    			g.fillRect(i*x,j*y, l, h);
+	    			
+	    		}else if (ga.getCase(i,j)==CaseType.FREE){
+	    			g.setFill(Color.ORANGE);
+	    			g.strokeRect(i*x,j*y, l, h);
+	    			g.fillRect(i*x,j*y, l, h);
+	    			
+	    		}else if (ga.getCase(i,j)==CaseType.POISON){
+	    			g.setFill(Color.GREEN);
+	    			g.strokeRect(i*x,j*y, l, h);
+	    			g.fillRect(i*x,j*y, l, h);
+	    			 		
+	    		}
+	    	}
+	    }
+		
+	}
+	
 	
 	
 	public static void main(String [] args) {
@@ -121,5 +147,6 @@ public class Dessin extends Application {
 	}
 
 }
+
 
 
