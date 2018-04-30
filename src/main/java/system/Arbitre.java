@@ -26,6 +26,7 @@ public Arbitre(){
 	creerJoueur(0, "IA_FACILE");
 	creerJoueur(1, "IA_FACILE");
         this.listeJoueur[0].setGaufre(this.plateau);
+        this.listeJoueur[1].setGaufre(this.plateau);
 	this.termine = false ;
 	this.joueurCourant = 0;
 }
@@ -37,7 +38,7 @@ public Arbitre(){
 *			natureJ1 la nature du premier joueur
 *			natureJ2 la nature 
 */
-public void Arbitre(int L, int l, String natureJ1, String natureJ2){
+public Arbitre(int L, int l, String natureJ1, String natureJ2){
 	creerGaufre(L,l);
 	creerJoueur(0, natureJ1);
 	creerJoueur(1, natureJ2);
@@ -84,7 +85,9 @@ public void jouer(){
 		this.plateau.manger(caseJouee);
 		finDeTour();
 		this.termine=this.plateau.isWon(caseJouee);
+           
 	}
+        System.out.println("joueur gagnant = "+this.joueurCourant);
 }
 
 }

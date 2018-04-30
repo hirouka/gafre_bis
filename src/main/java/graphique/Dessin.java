@@ -1,4 +1,4 @@
-package GUI;
+package graphique;
 
 import javafx.scene.*;
 import javafx.scene.paint.*;
@@ -23,6 +23,9 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.stage.Stage;
 
+import waffle.*;
+import general.*;
+
 
 public class Dessin extends Application {
    
@@ -32,7 +35,7 @@ public class Dessin extends Application {
 	
   	public Dessin(Gaufre ga){
 		this.ga = ga;
-		lignes = ga.getLenght();
+		lignes = ga.getLength();
 		col = ga.getHeight();
   	}
 	
@@ -45,27 +48,32 @@ public class Dessin extends Application {
 		 double height = c.getHeight();
 		 double h = height  / lignes;
 		 
-		 for(Case c : ga){
-			 if(ga.getCase(c.getX(), c.getY()) == CaseType.FREE){
-				 g.setFill(Color.WHITE);
-        		 g.strokeRect(c.getX()*l, c.getY()*h, l, h);
-        		 g.fillRect(c.getX()*l, c.getY()*h, l, h);
-				 
-			 }
-			 else if(ga.getCase(c.getX(), c.getY()) == caseType.POISON){
-				 final String imageURI = new File("/home/n/ndourno/workspace/Gaufre/rsc/poison.png").toURI().toString(); 
-				 final Image image = new Image(imageURI);
-                 final ImageView imageView = new ImageView(image); 
-				 imageView.setFitHeight(h);
-				 imageView.setFitWidth(l);
-				 p.getChildren().add(imageView); 
+		 for(Iterator it_h = ga.getIterator(); it_h.hasNext_height();){
+                    ga.setTo_length(0);
+                    for(Iterator it_l = ga.getIterator(); it_l.hasNext_length();){
+                        Case casCour = ga.getIndex();
+                        if(ga.getCase() == CaseType.FREE){
+                           g.setFill(Color.WHITE);
+                           g.strokeRect(casCour.getX()*l, casCour.getY()*h, l, h);
+                           g.fillRect(casCour.getX()*l, casCour.getY()*h, l, h);
 
-			 }
-             else if(ga.getCase(c.getX(), c.getY())  == caseType.EATEN){
-            	 g.setFill(Color.WHITE);
-        		 g.strokeRect(c.getX()*l, c.getY()*h, l, h);
-        		 g.fillRect(c.getX()*l, c.getY()*h, l, h);
-			 }
+                        }
+                        else if(ga.getCase() == CaseType.POISON){
+                          /* final String imageURI = new File("/home/n/ndourno/workspace/Gaufre/rsc/poison.png").toURI().toString(); 
+                           final Image image = new Image(imageURI);
+                           final ImageView imageView = new ImageView(image); 
+                           imageView.setFitHeight(h);
+                           imageView.setFitWidth(l);
+                           p.getChildren().add(imageView); */
+                        }
+                       else if(ga.getCase()  == CaseType.EATEN){
+                           g.setFill(Color.WHITE);
+                           g.strokeRect(casCour.getX()*l, casCour.getY()*h, l, h);
+                           g.fillRect(casCour.getX()*l, casCour.getY()*h, l, h);
+                       }
+                        it_l.next_length();
+                    }
+                    it_h.next_height();
 		 }
 
 	}
@@ -85,7 +93,7 @@ public class Dessin extends Application {
 		double height = c.getHeight();
 		double h = height  / lignes;
 	   
-        Ecouteur_Souris ecouteurS = new Ecouteur_Souris(this, l, h);
+        final Ecouteur_Souris ecouteurS = new Ecouteur_Souris(this, l, h);
         
         s.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override

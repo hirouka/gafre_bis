@@ -44,10 +44,8 @@ public class Gaufre extends Board{
 		int x = myCase.getX();
 		int y = myCase.getY();
 		
-		if(this.getCase(x, y) == CaseType.POISON) {
-			return true;
-		}
-		return false;
+		return ((x==0)&&(y==0));
+		
 	}
 	
 	public void printGaufre() {

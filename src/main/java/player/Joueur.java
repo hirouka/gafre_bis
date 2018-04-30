@@ -13,10 +13,13 @@ import general.Case;
  */
 public abstract class Joueur{
     
-    protected Waffle g ;
+    public Waffle g ;
+    public int x,y;
     
     public void setGaufre(Waffle w){
         this.g = w;
+        this.x = w.getHeight();
+        this.y = w.getLength();
     }
     
         /**
