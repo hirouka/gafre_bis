@@ -12,6 +12,6 @@ package system;
 public class Main {
     public static void main (String args[]){
            Arbitre referee = new ArbitreSimple();
-           referee.jouer();
+           //referee.jouer();
     }
 }

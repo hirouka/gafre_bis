@@ -6,7 +6,7 @@ package player;
  */
 public class JouerFactory {
 	
-	public Jouer getJouer(String jouerType) {
+	public Joueur getJouer(String jouerType) {
 		
 		if(jouerType == "HUMAN") {
 			return new Human();

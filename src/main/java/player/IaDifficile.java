@@ -3,7 +3,7 @@ package player;
 import general.Case;
 
 /*TODO implement*/
-public class IaDifficile implements Jouer {
+public class IaDifficile extends Joueur {
 	private int x, y;
 	private Case choisi;
 	

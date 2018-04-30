@@ -11,7 +11,7 @@ import player.*;
 public abstract class Arbitre {
 
 	protected Waffle plateau ;
-	protected Jouer[] listeJoueur;
+	protected Joueur[] listeJoueur;
 	protected boolean termine ;
 	protected int joueurCourant;
 
@@ -22,9 +22,10 @@ public abstract class Arbitre {
 */
 public Arbitre(){
 	creerGaufre(4,5);
-        listeJoueur = new Jouer[2];
-	creerJoueur(0, "IA_DIFFICILE");
-	creerJoueur(1, "IA_DIFFICILE");
+        this.listeJoueur = new Joueur[2];
+	creerJoueur(0, "IA_FACILE");
+	creerJoueur(1, "IA_FACILE");
+        this.listeJoueur[0].setGaufre(this.plateau);
 	this.termine = false ;
 	this.joueurCourant = 0;
 }
@@ -47,7 +48,7 @@ public void Arbitre(int L, int l, String natureJ1, String natureJ2){
 public void creerJoueur(int num, String nature){
 	JouerFactory f1 = new JouerFactory();
 
-	Jouer p1 = f1.getJouer(nature);
+	Joueur p1 = f1.getJouer(nature);
 
 	this.listeJoueur[num] = p1;
 }

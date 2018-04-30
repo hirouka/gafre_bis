@@ -9,14 +9,14 @@ import waffle.Gaufre;
 
 
 /*TODO implement*/
-public class IaFacile implements Jouer {
+public class IaFacile extends Joueur {
 	
 	private int x, y;
 	Gaufre g = new Gaufre(x,y);
 	private Case choisi;
-	public IaFacile(Gaufre g,int x, int y){
-		this.x =x ;
-		this.y= y;
+	public IaFacile(Gaufre g){
+		this.x =g.getHeight() ;
+		this.y= g.getLength();
 		this.g =g;
 		
 	}
@@ -33,8 +33,8 @@ public class IaFacile implements Jouer {
 		Case choisi;	
 		Random rand = new Random();
 		ArrayList<Case> list = new ArrayList<Case>();
-		for(i=0;i<x;i++){
-			for(j=0;j<y;j++){
+		for(i=0;i!=x;i++){
+			for(j=0;j!=y;j++){
 				choisi = new Case(i,j);
 				if(g.getCase(i,j)==CaseType.EATEN){
 					list.add(choisi);		
