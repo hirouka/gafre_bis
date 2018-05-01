@@ -20,13 +20,14 @@ public abstract class Arbitre {
 * cree un jeu par defaut
 *
 */
+	
 public Arbitre(){
 	creerGaufre(4,5);
-        this.listeJoueur = new Joueur[2];
+    this.listeJoueur = new Joueur[2];
 	creerJoueur(0, "IA_FACILE");
 	creerJoueur(1, "IA_FACILE");
-        this.listeJoueur[0].setGaufre(this.plateau);
-        this.listeJoueur[1].setGaufre(this.plateau);
+    this.listeJoueur[0].setGaufre(this.plateau);
+    this.listeJoueur[1].setGaufre(this.plateau);
 	this.termine = false ;
 	this.joueurCourant = 0;
 }

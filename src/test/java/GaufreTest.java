@@ -2,8 +2,6 @@ import static org.junit.Assert.*;
 
 import waffle.*;
 import general.*;
-import player.*;
-import player.*;
 
 import org.junit.Test;
 

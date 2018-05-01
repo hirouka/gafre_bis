@@ -13,7 +13,7 @@ public class JouerFactory {
 		}
 		
 		else if(jouerType == "IA_FACILE") {
-			return new IaFacile() ; //TODO remplacer par IA facile
+			return new IaFacile() ;
                         
 		}
 		

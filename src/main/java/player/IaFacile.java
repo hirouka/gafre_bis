@@ -5,24 +5,24 @@ import java.util.Random;
 
 import general.Case;
 import waffle.CaseType;
-import waffle.Waffle;
 import waffle.Gaufre;
 
 
 /*TODO implement*/
 public class IaFacile extends Joueur {
 	
-	private Case choisi;
-        ArrayList<Case> listeCaseCommestible ;
+    ArrayList<Case> listeCaseCommestible ;
                 
-	/*public IaFacile(Gaufre g){
+	public IaFacile(Gaufre g){
 		this.x =g.getHeight() ;
 		this.y= g.getLength();
 		this.g =g;
 		
-	}*/
-        
-        public IaFacile(){}
+	}
+	
+	public IaFacile() {
+		
+	}
                 
        public void creerListe(){
            ArrayList<Case> list = new ArrayList<Case>();
