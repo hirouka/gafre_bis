@@ -41,8 +41,11 @@ public Arbitre(){
 */
 public Arbitre(int L, int l, String natureJ1, String natureJ2){
 	creerGaufre(L,l);
+	this.listeJoueur = new Joueur[2];
 	creerJoueur(0, natureJ1);
 	creerJoueur(1, natureJ2);
+	this.listeJoueur[0].setGaufre(this.plateau);
+    this.listeJoueur[1].setGaufre(this.plateau);
 	this.termine = false ;
 	this.joueurCourant = 0;
 }

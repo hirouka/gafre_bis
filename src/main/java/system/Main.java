@@ -11,7 +11,7 @@ package system;
  */
 public class Main {
     public static void main (String args[]){
-           Arbitre referee = new ArbitreSimple();
+           Arbitre referee = new ArbitreSimple(3,3,"IA_MOYENNE","IA_MOYENNE");
            referee.jouer();
     }
 }

@@ -13,8 +13,8 @@ import general.Case;
  */
 public abstract class Joueur{
     
-    public Waffle g ;
-    public int x,y;
+    protected Waffle g ;
+    protected int x,y;
     
     public void setGaufre(Waffle w){
         this.g = w;

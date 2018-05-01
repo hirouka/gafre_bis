@@ -16,6 +16,10 @@ public class ArbitreSimple extends Arbitre {
         super();
     }
     
+    public ArbitreSimple(int L, int l, String natureJ1, String natureJ2){
+        super(L,l,natureJ1,natureJ2);
+    }
+    
     public void creerGaufre(int L, int l){
         this.plateau = new Gaufre(l,L);
     }

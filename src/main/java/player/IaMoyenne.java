@@ -6,8 +6,10 @@ import waffle.Gaufre;
 
 /*TODO implement*/
 public class IaMoyenne extends Joueur {
-    private int x, y;
-        Gaufre g = new Gaufre(x,y);
+    
+    public IaMoyenne(){
+    	super();
+    }
     
     public Case reflechir() {
         Case poison= new Case(0,0);
@@ -27,7 +29,7 @@ public class IaMoyenne extends Joueur {
                  if((g.getCase(0,2)==CaseType.EATEN)&&(g.getCase(2,0)==CaseType.EATEN)&&(g.getCase(1,1)==CaseType.EATEN)){
                      c=c2;
                  }else {
-                     IaFacile iaf = new IaFacile(g);
+                     IaFacile iaf = new IaFacile((Gaufre)this.g);
                      c = iaf.reflechir();
                      while((c.equals(c2)) || (c.equals(c1)) || (c.equals(poison))){
                 c = iaf.reflechir();
