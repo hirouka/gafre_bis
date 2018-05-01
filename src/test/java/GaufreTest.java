@@ -2,6 +2,8 @@ import static org.junit.Assert.*;
 
 import waffle.*;
 import general.*;
+import player.*;
+import player.*;
 
 import org.junit.Test;
 
@@ -70,7 +72,7 @@ public class GaufreTest {
 		Gaufre g = new Gaufre(5,5);
                 Case c = new Case(4,4);
                 g.manger(c);
-                assertEquals("La case n'est pas mangée", CaseType.EATEN, g.getCase(4,4));
+                assertEquals("La case n'est pas mangÃ©e", CaseType.EATEN, g.getCase(4,4));
 	}
         
         @Test
@@ -131,6 +133,34 @@ public class GaufreTest {
                 }
                 
                 assertEquals("Manger le poison ne marche pas", k, 0);
+                
+	}
+        
+        @Test
+        public void testVictoire(){
+		Gaufre g = new Gaufre(5,5);
+                Case c = new Case(0,0);
+                
+                assertTrue("IsWon ne renvoie pas true quand elle devrait", isWon(c));
+                
+	}
+        
+        @Test
+        public void testPasVictoire1(){
+		Gaufre g = new Gaufre(5,5);
+                Case c = new Case(1,0);
+                
+                assertTrue("IsWon renvoie true quand elle devrait pas", !isWon(c));
+                
+	}
+        
+        @Test
+        public void testPasVictoire2(){
+		Gaufre g = new Gaufre(5,5);
+                Case c = new Case(1,1);
+                g.manger(c);
+                
+                assertTrue("IsWon renvoie true quand elle devrait pas", !isWon(c));
                 
 	}
         
