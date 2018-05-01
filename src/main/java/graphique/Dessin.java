@@ -28,9 +28,9 @@ import waffle.Gaufre;
 
 public class Dessin extends Application {
     GraphicsContext g;
-	//Gaufre ga;
-	int lignes = 5; /*ga.hauteur()*/;
-	int col = 5;/*ga.largeur()*/;
+	Gaufre ga = new Gaufre(5,6);
+	int lignes = ga.getLength();
+	int col = ga.getHeight();
     //Image poison = null;
 	
 	
@@ -66,16 +66,16 @@ public class Dessin extends Application {
 	
 	
 	@Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(final Stage primaryStage) throws Exception {
 		
-		Canvas c = new Canvas();
+		final Canvas c = new Canvas();
 		Pane p = new Pane(c);
 	    c.widthProperty().bind(p.widthProperty());
 	    c.heightProperty().bind(p.heightProperty());
 	    Scene s = new Scene(p, 800, 600);
 	    
-        double x = c.getWidth() / col;             //largeur d'une case
-	    double y = c.getHeight() / lignes;         //hauteur d'une case
+        final double x = c.getWidth() / col;             //largeur d'une case
+	    final double y = c.getHeight() / lignes;         //hauteur d'une case
 	   
 	    final String imageURI = new File("/home/n/ndourno/workspace/ZZZ/src/image/poison.png/").toURI().toString(); 
 		final Image image = new Image(imageURI);
@@ -89,8 +89,26 @@ public class Dessin extends Application {
         s.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-            	ecouteurS.handle(event);
-            	
+            	if (event.getEventType() == MouseEvent.MOUSE_PRESSED) {
+        	    	
+        	    	int a = (int) (event.getX() / x);
+        	    	int b = (int) (event.getY() / y);
+        	    	Case m = new Case(a,b);
+        	    	System.out.println("  "+a+"  "+b);
+        	    	
+        	    	//Case c = new Case (x, y);
+        	    			
+        	        ga.manger(m);
+        	        if(ga.isWon(m)) {
+        	        	primaryStage.close();
+
+        	        }else {
+            	        affichage_gaufre(ga, c);
+
+        	        }
+
+        	    			
+        	    }
             }
         });
         
@@ -104,10 +122,10 @@ public class Dessin extends Application {
         }); 
         primaryStage.show();
         Gaufre ga = new Gaufre(5,5);
-        //affichage_gaufre(ga, c);
-        Case k = new Case(2,2);
-        ga.manger(k);
         affichage_gaufre(ga, c);
+      //  Case k = new Case(2,2);
+       // ga.manger(k);
+       // affichage_gaufre(ga, c);
 	}
 	
 	public void affichage_gaufre(Gaufre ga, Canvas c){
@@ -123,8 +141,8 @@ public class Dessin extends Application {
 	    double y = c.getHeight() / l;         //hauteur d'une case
 	    
 	    
-	    for(i=0;i<l; i++){
-	    	for(j=0;j<h;j++){
+	    for(i=0;i<l+1; i++){
+	    	for(j=0;j<h+1;j++){
 	    		
 	    		if(ga.getCase(i,j)==CaseType.EATEN){ 
 	    			g.setFill(Color.WHITE);
