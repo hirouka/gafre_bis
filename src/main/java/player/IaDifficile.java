@@ -9,6 +9,18 @@ public class IaDifficile extends Joueur {
 	private int x, y;
 	private Case choisi;
 	
+	
+	public IaDifficile(Gaufre g){
+		this.x =g.getHeight() ;
+		this.y= g.getLength();
+		this.g =g;
+		
+	}
+	
+	public IaDifficile() {
+		
+	}
+	
 	@Override
 	public Case reflechir() {
 		
