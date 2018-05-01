@@ -1,0 +1,22 @@
+27/04/18
+
+Nous commençons le projet par une réunion d'organisation. A la suite de cette réunion il est convenu que :
+- nous nous réunirons à l'UFR les jours d'ouverture de 10h00 à 12h00 et de 14h00 à 17h00. Nous devrons individuellement travailler d'avantage, mais certains préfèrant se lever tôt pour partir tôt et d'autres se lever tard et partir tard, le choix sera laissé libre à chacun;
+- AntoineD assumera le rôle de testeur, Nadia d'intégrateur, Ndaye se concentrera sur l'implémentation de la partie graphique, AntoineR et Bianca sur la partie arbitre et joueur(IA) tandis que Corentin sera rapporteur; 
+- Les tests unitaires seront, autant que possible, réalisés avant l'implémentation et à deux reprises (par Antoine et une autre personne variable). Celui qui implémente ne réalisera pas les tests. On préfèrera distinguer clairement les cas robustes des cas non robustes pour gagner en efficacité de développement;
+- Nous travaillerons sous github (ou suggestion AntoineR) ;
+- Nous tenterons de respecter une nomenclature de code (les commentaires javadoc) ;
+-  Nous développeront d'abord une implémentation simple (rapide) de chaque fonction avant de développer d'autres implémentations plus pertinentes.
+
+Nous avons également réfléchis au squellette du projet. 
+
+Dès à présent, les tâches à venir sont les suivantes :
+Nadia : configurer git.				// OK
+AntoineD : prendre en main JUnit, faire les premiers tests (à voir avec les développeurs). //En cours
+Ndaye : développer l'interface.	//En cours
+Bianca : développer l'arbitre et l'IA.	//En cours
+Corentin : installer Maven, tenir le rapport.		//OK
+AntoineR est malade et non présent aujourd'hui.
+
+--------------------
+
