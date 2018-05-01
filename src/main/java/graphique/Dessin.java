@@ -66,7 +66,7 @@ public class Dessin extends Application {
 	
 	
 	@Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(final Stage primaryStage) throws Exception {
 		
 		final Canvas c = new Canvas();
 		Pane p = new Pane(c);
@@ -99,7 +99,13 @@ public class Dessin extends Application {
         	    	//Case c = new Case (x, y);
         	    			
         	        ga.manger(m);
-        	        affichage_gaufre(ga, c);
+        	        if(ga.isWon(m)) {
+        	        	primaryStage.close();
+
+        	        }else {
+            	        affichage_gaufre(ga, c);
+
+        	        }
 
         	    			
         	    }
