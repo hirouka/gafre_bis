@@ -10,6 +10,8 @@ public class Human extends Joueur {
 	private Case choisi;
         private Gaufre g;
 	
+        
+        /* NON FONCTIONNEL */
 	@Override
 	public Case reflechir() {
 		
@@ -23,7 +25,7 @@ public class Human extends Joueur {
             
             if(mangeable)
             {
-                g.manger(c);
+                this.choisi = c;
             }
             
             return mangeable;
